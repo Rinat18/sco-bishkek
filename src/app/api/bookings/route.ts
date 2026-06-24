@@ -28,6 +28,7 @@ export async function POST(req: NextRequest) {
         checkOut: new Date(checkOut),
         guests: Number(guests),
         totalPrice: Number(totalPrice),
+        currency: "USD",
         status: "pending",
         paymentStatus: "unpaid",
         paymentRef: null,
