@@ -1,7 +1,10 @@
 import { PrismaClient } from "@prisma/client";
-import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
+import { PrismaNeonHttp } from "@prisma/adapter-neon";
+import { neon } from "@neondatabase/serverless";
+import "dotenv/config";
 
-const adapter = new PrismaBetterSqlite3({ url: "file:dev.db" });
+const sql = neon(process.env.DATABASE_URL!);
+const adapter = new PrismaNeonHttp(sql);
 const prisma = new PrismaClient({ adapter } as ConstructorParameters<typeof PrismaClient>[0]);
 
 async function main() {
