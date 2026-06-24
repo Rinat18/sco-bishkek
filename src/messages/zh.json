@@ -1,0 +1,100 @@
+{
+  "nav": {
+    "home": "首页",
+    "hotels": "酒店",
+    "booking": "预订",
+    "about": "关于活动"
+  },
+  "hero": {
+    "event": "上合组织峰会 2026",
+    "title": "与会人员官方住宿预订",
+    "subtitle": "为参加上海合作组织峰会的与会人员预订比什凯克酒店",
+    "cta": "选择酒店",
+    "dates": "2026年7月15-17日 • 吉尔吉斯斯坦比什凯克"
+  },
+  "hotels": {
+    "title": "合作酒店",
+    "subtitle": "峰会与会人员官方指定酒店",
+    "stars": "星",
+    "from": "起价",
+    "perNight": "/ 晚",
+    "viewRooms": "查看客房",
+    "filterAll": "全部",
+    "available": "可预订"
+  },
+  "room": {
+    "type": "房型",
+    "guests": "入住人数",
+    "price": "价格",
+    "perNight": "/ 晚",
+    "book": "立即预订",
+    "amenities": "设施",
+    "standard": "标准间",
+    "deluxe": "豪华间",
+    "suite": "套房",
+    "twin": "双床房"
+  },
+  "booking": {
+    "title": "客房预订",
+    "personalInfo": "个人信息",
+    "firstName": "名",
+    "lastName": "姓",
+    "email": "电子邮件",
+    "phone": "电话",
+    "country": "国家",
+    "organization": "单位",
+    "stayDetails": "入住信息",
+    "checkIn": "入住日期",
+    "checkOut": "退房日期",
+    "guests": "入住人数",
+    "notes": "特殊要求",
+    "payment": "付款",
+    "cardNumber": "卡号",
+    "cardHolder": "持卡人姓名",
+    "expiry": "有效期",
+    "cvv": "CVV",
+    "total": "总计",
+    "nights": "晚",
+    "confirm": "确认并付款",
+    "processing": "处理中...",
+    "summary": "预订摘要"
+  },
+  "confirmation": {
+    "title": "预订已确认！",
+    "subtitle": "感谢您的预订，详情已发送至您的电子邮件。",
+    "bookingId": "预订编号",
+    "hotel": "酒店",
+    "room": "客房",
+    "checkIn": "入住日期",
+    "checkOut": "退房日期",
+    "total": "总计",
+    "status": "状态",
+    "confirmed": "已确认",
+    "backHome": "返回首页"
+  },
+  "admin": {
+    "title": "管理面板",
+    "bookings": "预订",
+    "total": "总计",
+    "confirmed": "已确认",
+    "pending": "待处理",
+    "cancelled": "已取消",
+    "revenue": "收入",
+    "name": "姓名",
+    "hotel": "酒店",
+    "room": "客房",
+    "dates": "日期",
+    "amount": "金额",
+    "status": "状态",
+    "actions": "操作",
+    "confirm": "确认",
+    "cancel": "取消",
+    "export": "导出CSV",
+    "search": "搜索...",
+    "signOut": "退出"
+  },
+  "footer": {
+    "official": "官方预订网站",
+    "rights": "版权所有"
+  }
+}

@@ -18,6 +18,7 @@ export default function Navbar() {
     { code: "ru", label: "Русский" },
     { code: "en", label: "English" },
     { code: "ky", label: "Кыргызча" },
+    { code: "zh", label: "中文" },
   ];
 
   function switchLocale(newLocale: string) {
