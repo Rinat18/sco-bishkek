@@ -1,0 +1,100 @@
+{
+  "nav": {
+    "home": "Home",
+    "hotels": "Hotels",
+    "booking": "Booking",
+    "about": "About"
+  },
+  "hero": {
+    "event": "SCO Summit 2026",
+    "title": "Official Accommodation for Participants",
+    "subtitle": "Book your hotel in Bishkek for the Shanghai Cooperation Organisation Summit",
+    "cta": "Choose Hotel",
+    "dates": "July 15–17, 2026 • Bishkek, Kyrgyzstan"
+  },
+  "hotels": {
+    "title": "Partner Hotels",
+    "subtitle": "Official hotels for summit participants",
+    "stars": "stars",
+    "from": "from",
+    "perNight": "/ night",
+    "viewRooms": "View Rooms",
+    "filterAll": "All",
+    "available": "Available"
+  },
+  "room": {
+    "type": "Room Type",
+    "guests": "Guests",
+    "price": "Price",
+    "perNight": "/ night",
+    "book": "Book Now",
+    "amenities": "Amenities",
+    "standard": "Standard",
+    "deluxe": "Deluxe",
+    "suite": "Suite",
+    "twin": "Twin"
+  },
+  "booking": {
+    "title": "Room Booking",
+    "personalInfo": "Personal Information",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "country": "Country",
+    "organization": "Organization",
+    "stayDetails": "Stay Details",
+    "checkIn": "Check-in Date",
+    "checkOut": "Check-out Date",
+    "guests": "Number of Guests",
+    "notes": "Special Requests",
+    "payment": "Payment",
+    "cardNumber": "Card Number",
+    "cardHolder": "Cardholder Name",
+    "expiry": "Expiry Date",
+    "cvv": "CVV",
+    "total": "Total",
+    "nights": "nights",
+    "confirm": "Confirm & Pay",
+    "processing": "Processing...",
+    "summary": "Booking Summary"
+  },
+  "confirmation": {
+    "title": "Booking Confirmed!",
+    "subtitle": "Thank you for your booking. Details have been sent to your email.",
+    "bookingId": "Booking ID",
+    "hotel": "Hotel",
+    "room": "Room",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "total": "Total",
+    "status": "Status",
+    "confirmed": "Confirmed",
+    "backHome": "Back to Home"
+  },
+  "admin": {
+    "title": "Admin Dashboard",
+    "bookings": "Bookings",
+    "total": "Total",
+    "confirmed": "Confirmed",
+    "pending": "Pending",
+    "cancelled": "Cancelled",
+    "revenue": "Revenue",
+    "name": "Name",
+    "hotel": "Hotel",
+    "room": "Room",
+    "dates": "Dates",
+    "amount": "Amount",
+    "status": "Status",
+    "actions": "Actions",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "export": "Export CSV",
+    "search": "Search...",
+    "signOut": "Sign Out"
+  },
+  "footer": {
+    "official": "Official Booking Website",
+    "rights": "All rights reserved"
+  }
+}
