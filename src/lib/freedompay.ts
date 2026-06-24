@@ -48,11 +48,11 @@ export async function createFPPayment(p: FPPaymentParams): Promise<{ paymentUrl:
 
   params.pg_sig = buildSignature(params, FP_SECRET_KEY);
 
-  // FP требует multipart/form-data
-  const form = new FormData();
-  Object.entries(params).forEach(([k, v]) => form.append(k, v));
-
-  const res = await fetch(FP_API_URL, { method: "POST", body: form });
+  const res = await fetch(FP_API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams(params).toString(),
+  });
   const xml = await res.text();
   console.log("[FP] response:", xml);
 
