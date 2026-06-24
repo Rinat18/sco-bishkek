@@ -1,6 +1,6 @@
 import crypto from "crypto";
 
-const FP_API_URL = process.env.FP_API_URL ?? "https://api.freedompay.kz/g2g/payment_page/";
+const FP_API_URL = process.env.FP_API_URL ?? "https://api.freedompay.kg/g2g/payment_page";
 const FP_MERCHANT_ID = process.env.FP_MERCHANT_ID!;
 const FP_SECRET_KEY = process.env.FP_SECRET_KEY!;
 
