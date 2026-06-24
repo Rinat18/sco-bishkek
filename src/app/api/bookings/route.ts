@@ -28,9 +28,9 @@ export async function POST(req: NextRequest) {
         checkOut: new Date(checkOut),
         guests: Number(guests),
         totalPrice: Number(totalPrice),
-        status: "confirmed",
-        paymentStatus: "paid",
-        paymentRef: `PAY-${Date.now()}`,
+        status: "pending",
+        paymentStatus: "unpaid",
+        paymentRef: null,
         notes: notes || null,
       },
     });

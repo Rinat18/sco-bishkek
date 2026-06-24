@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useTranslations, useLocale } from "next-intl";
-import { CreditCard, Lock } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { CreditCard } from "lucide-react";
 
 interface Room {
   id: string;
@@ -16,24 +16,11 @@ interface Room {
 export default function BookingForm({ room, locale }: { room: Room; locale: string }) {
   const t = useTranslations("booking");
   const router = useRouter();
-
-  const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    country: "",
-    organization: "",
-    checkIn: "",
-    checkOut: "",
-    guests: 1,
-    notes: "",
-    cardNumber: "",
-    cardHolder: "",
-    expiry: "",
-    cvv: "",
+    firstName: "", lastName: "", email: "", phone: "",
+    country: "", organization: "", checkIn: "", checkOut: "",
+    guests: 1, notes: "",
   });
 
   function update(field: string, value: string | number) {
@@ -43,10 +30,12 @@ export default function BookingForm({ room, locale }: { room: Room; locale: stri
   function nights(): number {
     if (!form.checkIn || !form.checkOut) return 0;
     const diff = new Date(form.checkOut).getTime() - new Date(form.checkIn).getTime();
-    return Math.max(0, Math.floor(diff / (1000 * 60 * 60 * 24)));
+    return Math.max(0, Math.floor(diff / 86400000));
   }
 
   const total = nights() * room.price;
+  const inputClass = "w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent";
+  const labelClass = "block text-xs font-medium text-gray-600 mb-1";
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -57,16 +46,11 @@ export default function BookingForm({ room, locale }: { room: Room; locale: stri
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           roomId: room.id,
-          firstName: form.firstName,
-          lastName: form.lastName,
-          email: form.email,
-          phone: form.phone,
-          country: form.country,
-          organization: form.organization,
-          checkIn: form.checkIn,
-          checkOut: form.checkOut,
-          guests: form.guests,
-          notes: form.notes,
+          firstName: form.firstName, lastName: form.lastName,
+          email: form.email, phone: form.phone,
+          country: form.country, organization: form.organization,
+          checkIn: form.checkIn, checkOut: form.checkOut,
+          guests: form.guests, notes: form.notes,
           totalPrice: total,
         }),
       });
@@ -81,12 +65,9 @@ export default function BookingForm({ room, locale }: { room: Room; locale: stri
     }
   }
 
-  const inputClass = "w-full border border-gray-200 rounded-lg px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent";
-  const labelClass = "block text-xs font-medium text-gray-600 mb-1";
-
   return (
     <form onSubmit={submit} className="space-y-5">
-      {/* Step 1: Personal info */}
+      {/* Personal info */}
       <div className="bg-white rounded-xl border border-gray-200 p-5">
         <h2 className="font-semibold text-gray-900 mb-4">{t("personalInfo")}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -117,7 +98,7 @@ export default function BookingForm({ room, locale }: { room: Room; locale: stri
         </div>
       </div>
 
-      {/* Step 2: Stay details */}
+      {/* Stay details */}
       <div className="bg-white rounded-xl border border-gray-200 p-5">
         <h2 className="font-semibold text-gray-900 mb-4">{t("stayDetails")}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -147,62 +128,16 @@ export default function BookingForm({ room, locale }: { room: Room; locale: stri
         )}
       </div>
 
-      {/* Step 3: Payment */}
-      <div className="bg-white rounded-xl border border-gray-200 p-5">
-        <div className="flex items-center gap-2 mb-4">
-          <CreditCard className="w-4 h-4 text-blue-700" />
-          <h2 className="font-semibold text-gray-900">{t("payment")}</h2>
-          <Lock className="w-3.5 h-3.5 text-gray-400 ml-auto" />
-          <span className="text-xs text-gray-400">SSL</span>
-        </div>
-        <div className="grid grid-cols-1 gap-4">
-          <div>
-            <label className={labelClass}>{t("cardNumber")} *</label>
-            <input
-              className={inputClass}
-              required
-              placeholder="0000 0000 0000 0000"
-              maxLength={19}
-              value={form.cardNumber}
-              onChange={(e) => {
-                const v = e.target.value.replace(/\D/g, "").replace(/(.{4})/g, "$1 ").trim();
-                update("cardNumber", v);
-              }}
-            />
-          </div>
-          <div>
-            <label className={labelClass}>{t("cardHolder")} *</label>
-            <input className={inputClass} required placeholder="IVAN IVANOV" value={form.cardHolder} onChange={(e) => update("cardHolder", e.target.value.toUpperCase())} />
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className={labelClass}>{t("expiry")} *</label>
-              <input
-                className={inputClass}
-                required
-                placeholder="MM/YY"
-                maxLength={5}
-                value={form.expiry}
-                onChange={(e) => {
-                  const v = e.target.value.replace(/\D/g, "");
-                  update("expiry", v.length >= 2 ? `${v.slice(0, 2)}/${v.slice(2)}` : v);
-                }}
-              />
-            </div>
-            <div>
-              <label className={labelClass}>{t("cvv")} *</label>
-              <input className={inputClass} required placeholder="123" maxLength={3} type="password" value={form.cvv} onChange={(e) => update("cvv", e.target.value.replace(/\D/g, ""))} />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Total + Submit */}
+      {/* Submit → redirect to confirmation → PayButton */}
       <div className="bg-blue-700 rounded-xl p-5 text-white">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-1">
           <span className="text-blue-100">{t("total")}</span>
           <span className="text-2xl font-bold">${total || "—"}</span>
         </div>
+        <p className="text-blue-200 text-xs mb-4 flex items-center gap-1">
+          <CreditCard className="w-3.5 h-3.5" />
+          {locale === "ru" ? "Оплата через FreedomPay" : locale === "zh" ? "通过FreedomPay支付" : "Secure payment via FreedomPay"}
+        </p>
         <button
           type="submit"
           disabled={loading || nights() === 0}
