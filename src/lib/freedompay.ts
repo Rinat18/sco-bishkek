@@ -44,6 +44,7 @@ export async function createFPPayment(p: FPPaymentParams): Promise<{ paymentUrl:
     pg_language: LANG_MAP[p.locale ?? "ru"] ?? "ru",
     pg_user_contact_email: p.customerEmail,
     pg_user_phone: p.customerPhone,
+    ...(process.env.FP_TESTING_MODE === "1" ? { pg_testing_mode: "1" } : {}),
   };
 
   params.pg_sig = buildSignature(params, FP_SECRET_KEY);
