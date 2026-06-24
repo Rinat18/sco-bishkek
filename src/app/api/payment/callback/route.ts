@@ -22,31 +22,30 @@ async function handleCallback(params: Record<string, string>) {
     return xmlResponse("error", "Invalid signature");
   }
 
-  const orderId = params.pg_order_id;
+  const attemptOrderId = params.pg_order_id; // формат: bookingId-timestamp
   const paymentId = params.pg_payment_id;
   const status = params.pg_result; // 1 = success, 0 = failure
 
-  if (!orderId) {
+  if (!attemptOrderId) {
     return xmlResponse("error", "Missing order_id");
   }
 
-  const booking = await prisma.booking.findUnique({ where: { id: orderId } });
+  // bookingId — всё до последнего дефиса с timestamp
+  const bookingId = attemptOrderId.replace(/-\d+$/, "");
+
+  const booking = await prisma.booking.findUnique({ where: { id: bookingId } });
   if (!booking) {
     return xmlResponse("error", "Booking not found");
   }
 
   if (status === "1") {
     await prisma.booking.update({
-      where: { id: orderId },
-      data: {
-        paymentStatus: "paid",
-        status: "confirmed",
-        paymentRef: paymentId,
-      },
+      where: { id: bookingId },
+      data: { paymentStatus: "paid", status: "confirmed", paymentRef: paymentId },
     });
   } else {
     await prisma.booking.update({
-      where: { id: orderId },
+      where: { id: bookingId },
       data: { paymentStatus: "unpaid", status: "pending" },
     });
   }

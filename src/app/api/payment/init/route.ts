@@ -26,8 +26,11 @@ export async function POST(req: NextRequest) {
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? `https://${req.headers.get("host")}`;
     const locale = req.headers.get("accept-language")?.slice(0, 2) ?? "ru";
 
+    // Уникальный order_id на каждую попытку — FP не принимает повторный pg_order_id
+    const attemptOrderId = `${booking.id}-${Date.now()}`;
+
     const { paymentUrl, paymentId } = await createFPPayment({
-      orderId: booking.id,
+      orderId: attemptOrderId,
       amount: booking.totalPrice,
       currency: booking.currency,
       description: `SCO 2026 — ${booking.room.hotel.nameRu} — ${booking.room.nameRu}`,
